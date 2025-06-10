@@ -2,6 +2,7 @@ import express from "express";
 import connectDB from "./src/database/database.js";
 import cors from "cors";
 import dotenv from "dotenv";
+import AuthRouter from "./src/routes/Authentication_Router/authRouter.js";
 dotenv.config();
 // server created
 const app = express();
@@ -10,6 +11,9 @@ app.use(express.json());
 app.use(cors());
 
 const PORT = process.env.PORT;
+
+// routes
+app.use("/", AuthRouter);
 
 connectDB()
   .then(() => {
